@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity, Modal} from 'react-native';
+import {Text, View, Pressable, Modal} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import NewRecipeModal from './NewRecipeModal';
+import { Styles } from '../styles/Styles';
 
 function RecipeDisplay() {
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
         <View style={{flex: 1, borderLeftWidth: 1, alignItems: 'center'}}>
-            <Text>Show available recipes here!</Text>
-            <TouchableOpacity 
-                style={{width: 50, height: 50}}
+            <Text style={Styles.headerText}>Show available recipes here!</Text>
+            <Pressable 
+                style={{width: 20, height: 20}}
                 onPress={() => setModalVisible(true)}
             >
                 <FontAwesomeIcon icon={faPlusCircle} />
-            </TouchableOpacity>
+            </Pressable>
             <Modal
                 animationType="slide"
                 transparent={false}

@@ -13,3 +13,5 @@
 - Each ingredient has can size/price/other relevant information
 * Print shopping list
 * Show price for all ingredients
+
+adding items have name and type (meat, frozen, canned, spices, etc.)
