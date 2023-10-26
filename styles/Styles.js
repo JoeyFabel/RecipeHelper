@@ -29,6 +29,12 @@ export const Styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 500,
     },
+    errorText: {
+        fontSize: 17,
+        fontWeight: 500,
+        color: 'red',
+        textAlign: 'center',
+    },
     tag: {
         borderRadius: 30,
         borderWidth: 1,
@@ -48,7 +54,8 @@ export const Styles = StyleSheet.create({
     button: {
         borderRadius: 30,
         alignItems: 'center',
-        width: 100,
+        // width: 100,
+        paddingHorizontal: 5,
         borderWidth: 1,
     }
 });

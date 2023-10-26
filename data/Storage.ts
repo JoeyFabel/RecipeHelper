@@ -30,23 +30,32 @@ const storage = new Storage({
                 {
                     'name': 'Canned Corn',
                     'size': '15.25 oz',
-                    'type': 'Canned'
+                    'type': 'Canned',
+                    'price': '',
                 },
                 {
                     'name': 'Diced Tomatoes',
                     'size': '14.5 oz',
-                    'type': 'Canned'
+                    'type': 'Canned',
+                    'price': '',
                 },
                 {
                     'name': 'Black Beans',
                     'size': '15 oz',
-                    'type': 'Canned'
+                    'type': 'Canned',
+                    'price': '',
                 },
                 {
                     'name': 'Shredded Mozzarella',
                     'size': '8 oz',
-                    'type': 'Refridgerated'
+                    'type': 'Refridgerated',
+                    'price': '',
                 }
+            ]
+        },
+        recipes(params) {
+            return [
+                
             ]
         }
     }
@@ -92,5 +101,9 @@ export function removeKey(key:string) {
         key: key,
     });
 }
+
+export const RECIPE_KEY = 'recipes';
+export const INGREDIENT_KEY = 'ingredients';
+export const TAG_KEY = 'tags';
 
 // export default storage;

@@ -1,24 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, Pressable, Modal } from 'react-native';
+import { View, Text, Pressable, TextInput } from 'react-native';
 import { Styles } from '../styles/Styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import Tag from './Tag';
 import InputModal from './InputModal';
 
-import {saveKey, getKey, removeKey} from '../data/Storage';
+import {saveKey, getKey, TAG_KEY, removeKey} from '../data/Storage';
 
-function TagSelector() {
+function TagSelector({selectedTags, setSelectedTags}) {
     const availableColors = ['red', '#2574f4' /*blue*/, 'green', 'yellow', 'orange']
     const [availableTags, setAvailableTags] = useState([]);    
-    const [selectedTags, setSelectedTags] = useState([]);
+    const [inputText, setInputText] = useState('');
     const [showInputModal, setShowInputModal] = useState(false);
 
     useEffect(() => {
-        // removeKey('tags');
+        // removeKey(TAG_KEY);
 
         let mappedTags = [];
-        getKey('tags').then((data) => {
+        getKey(TAG_KEY).then((data) => {
             mappedTags = data.map(
                 (tagName, index) => {
                     return {name: tagName, color: availableColors[index % availableColors.length]}
@@ -29,6 +29,10 @@ function TagSelector() {
         });
     }, []);
 
+    useEffect(() => {
+        if (showInputModal) setInputText('');
+    }, [showInputModal]);
+
     return (
         <>
             <View style={{flexDirection: 'row', paddingVertical: 5}}>
@@ -37,7 +41,7 @@ function TagSelector() {
                     {
                         selectedTags.map((tag, index) => {
                             return (
-                                <Tag tagName={tag.name} color={tag.color} selectable={true} onClick={() => {DeselectTag(index)}} key={index} />
+                                <Tag tagName={tag.name} color={tag.color} selectable={true} onClick={() => {deselectTag(index)}} key={index} />
                                 )
                             })
                     }
@@ -50,7 +54,7 @@ function TagSelector() {
                     {
                         availableTags.map((tag, index) => {
                             return (
-                                <Tag tagName={tag.name} color={tag.color} selectable={true} onClick={() => {SelectTag(index)}} key={index} />
+                                <Tag tagName={tag.name} color={tag.color} selectable={true} onClick={() => {selectTag(index)}} key={index} />
                             );
                         })
                     }
@@ -62,29 +66,35 @@ function TagSelector() {
                     </Pressable>
                 </View>
             </View>
-            <Modal
-                animationType='fade'
-                transparent={true}
-                visible={showInputModal}
-                onRequestClose={() => setShowInputModal(false)}
-            >
-                <InputModal label='Add a tag' closeModal={() => setShowInputModal(false)} onConfirm={AddTag}/>
-            </Modal>
+            <InputModal visible={showInputModal} label='Add a tag' confirmText='Add tag' closeModal={() => setShowInputModal(false)} onConfirm={addTag}>
+                <TextInput 
+                    style={Styles.input}
+                    placeholder='Tag'
+                    onChangeText={setInputText}
+                    value={inputText}
+                />
+            </InputModal>
         </>
     );
 
-    function AddTag(tag) {
+    function addTag() {
+        setShowInputModal(false);
+
+        let tag = inputText;
+
+        if (tag == '') return;
+
         console.log("Adding " + tag);
         if (availableTags.find((value) => value.name == tag) || selectedTags.find((value) => value.name == tag)) {
             console.log("that tag already exists");
         } else {
-            getKey('tags').then((data) => {
+            getKey(TAG_KEY).then((data) => {
                 // add the new tag, and sort it into the array
                 data.push(tag);
                 data.sort();
 
                 // save the new tags array
-                saveKey('tags', data);
+                saveKey(TAG_KEY, data);
 
                 // update the available tag with the new tag sorted into the list
                 let newTag = {name: tag, color: availableColors[data.indexOf(tag) % availableColors.length]}
@@ -94,7 +104,7 @@ function TagSelector() {
         }
     }
 
-    function SelectTag(index) {
+    function selectTag(index) {
         let theTag = availableTags[index];        
                 
         // remove the selected tag from the available list
@@ -104,7 +114,7 @@ function TagSelector() {
         setSelectedTags(selectedTags.concat(theTag).sort((a, b) => a.name.localeCompare(b.name)));
     }
 
-    function DeselectTag(index) {
+    function deselectTag(index) {
         let theTag = selectedTags[index];
 
         // remove the tag from the selected list

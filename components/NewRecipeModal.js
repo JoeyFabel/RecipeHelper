@@ -4,8 +4,13 @@ import { Styles } from '../styles/Styles';
 import TagSelector from './TagSelector';
 import IngredientSelector from './IngredientSelector';
 
+import {saveKey, getKey, removeKey, RECIPE_KEY} from '../data/Storage';
+
 function NewRecipeModal({closeModal}) {
     const [recipeName, onRecipeNameChange] = useState('');
+    const [selectedTags, setSelectedTags] = useState([]);
+    const [availableIngredients, setAvailableIngredients] = useState([]);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'green', minWidth: 400}}>
@@ -22,19 +27,67 @@ function NewRecipeModal({closeModal}) {
                         />
                 </View>
                 <View style={Styles.divider} />
-                <TagSelector />
+                <TagSelector selectedTags={selectedTags} setSelectedTags={setSelectedTags}/>
                 <View style={Styles.divider} />
-                <IngredientSelector />
+                <IngredientSelector availableIngredients={availableIngredients} setAvailableIngredients={setAvailableIngredients}/>
                 <View style={Styles.divider} />
-                <Pressable
-                    style={{...Styles.button, backgroundColor: 'red', alignSelf: 'center'}}
-                    onPress={() => closeModal()}
-                >
-                    <Text style={Styles.text}>Close modal</Text>
-                </Pressable>
+                {!!errorMessage &&
+                    <Text style={Styles.errorText}>{errorMessage}</Text>
+                }
+                <View style={{...Styles.row, justifyContent: 'center', gap: 5}}>
+                    <Pressable
+                        style={{...Styles.button, backgroundColor: 'green'}}
+                        onPress={() => addRecipe()}
+                    >
+                        <Text style={Styles.text}>Add Recipe</Text>
+                    </Pressable>
+                    <Pressable
+                        style={{...Styles.button, backgroundColor: 'red'}}
+                        onPress={() => closeModal()}
+                    >
+                        <Text style={Styles.text}>Close modal</Text>
+                    </Pressable>
+                </View>
             </View>
         </View>
     );
+
+    function addRecipe() {        
+        const theTags = selectedTags.map((item) => {return item.name});
+        const theIngredients = availableIngredients.filter((item) => {
+            return item.quantity > 0;
+        });
+
+        const newRecipe = {
+            'name': recipeName,
+            'tags': theTags,
+            'ingredients': theIngredients,
+        };
+
+        console.log("Recipe:");
+        console.log(newRecipe);
+
+        // update the recipe list with the new recipe
+        getKey(RECIPE_KEY).then((data) => {
+            if (data.find((value) => 
+                value.name == newRecipe.name
+            )) {
+                // console.log("That recipe already exists!");
+                setErrorMessage('That recipe already exists!\nChange the recipe name in order to add this!');
+                return;
+            }
+            
+            setErrorMessage(null);
+
+            // Add the recipe and sort into the list
+            data.push(newRecipe);
+            data.sort((a, b) => a.name.localeCompare(b.name));
+
+            // Save the recipe list
+            saveKey(RECIPE_KEY, data);
+            closeModal();
+        })
+    }
 }
 
 export default NewRecipeModal;
