@@ -57,5 +57,22 @@ export const Styles = StyleSheet.create({
         // width: 100,
         paddingHorizontal: 5,
         borderWidth: 1,
-    }
+    },
+    recipeContainer: {
+        borderWidth: 1,
+        borderColor: 'black',
+        width: 250,
+        height: 250,
+        alignItems: 'center',
+        alignSelf: 'center',
+    },
+    ingredient: {
+        flexDirection: 'row',
+        borderRadius: 45,
+        borderWidth: 1,
+        paddingVertical: 5,
+        paddingLeft: 5,
+        flex: 1,
+        marginBottom: 1,
+    },
 });

@@ -1,12 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import RecipeDisplay from './components/RecipeDisplay';
+import SelectionDisplay from './components/SelectionDisplay';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 import MainScreen from './components/MainScreen';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <MainScreen />
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <MainScreen/>
+      </View>
+    </NavigationContainer>
   );
 }
 

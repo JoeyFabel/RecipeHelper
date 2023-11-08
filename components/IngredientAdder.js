@@ -61,7 +61,6 @@ function IngredientAdder({onAdd}) {
                         style={Styles.input}
                         inputMode='decimal'
                         placeholder='12 oz'
-                        // defaultValue='12 oz'
                         onChangeText={setSizeText}
                         value={sizeText}                        
                     />

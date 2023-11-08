@@ -19,13 +19,14 @@ function TagSelector({selectedTags, setSelectedTags}) {
 
         let mappedTags = [];
         getKey(TAG_KEY).then((data) => {
-            mappedTags = data.map(
-                (tagName, index) => {
-                    return {name: tagName, color: availableColors[index % availableColors.length]}
-                }
-            );
+            // mappedTags = data.map(
+                // (tagName, index) => {
+                    // return {name: tagName, color: availableColors[index % availableColors.length]}
+                // }
+            // );
 
-            setAvailableTags(mappedTags);
+            // setAvailableTags(mappedTags);
+            setAvailableTags(data);
         });
     }, []);
 
@@ -42,8 +43,8 @@ function TagSelector({selectedTags, setSelectedTags}) {
                         selectedTags.map((tag, index) => {
                             return (
                                 <Tag tagName={tag.name} color={tag.color} selectable={true} onClick={() => {deselectTag(index)}} key={index} />
-                                )
-                            })
+                            )
+                        })
                     }
                 </View>
             </View>
@@ -89,17 +90,18 @@ function TagSelector({selectedTags, setSelectedTags}) {
             console.log("that tag already exists");
         } else {
             getKey(TAG_KEY).then((data) => {
+                // update the available tag with the new tag sorted into the list
+                let newTag = {name: tag, color: availableColors[data.length % availableColors.length]}
+                console.log(newTag);
+                // setAvailableTags(availableTags.concat(newTag).sort((a, b) => a.name.localeCompare(b.name)));
+                
                 // add the new tag, and sort it into the array
-                data.push(tag);
+                data.push(newTag);
                 data.sort();
 
                 // save the new tags array
                 saveKey(TAG_KEY, data);
-
-                // update the available tag with the new tag sorted into the list
-                let newTag = {name: tag, color: availableColors[data.indexOf(tag) % availableColors.length]}
-                console.log(newTag);
-                setAvailableTags(availableTags.concat(newTag).sort((a, b) => a.name.localeCompare(b.name)));
+                setAvailableTags(data);
             });
         }
     }
@@ -109,6 +111,9 @@ function TagSelector({selectedTags, setSelectedTags}) {
                 
         // remove the selected tag from the available list
         setAvailableTags(availableTags.filter((value) => value != theTag));
+
+        console.log('selected');
+        console.log(theTag);
 
         // and add it to the selected list
         setSelectedTags(selectedTags.concat(theTag).sort((a, b) => a.name.localeCompare(b.name)));

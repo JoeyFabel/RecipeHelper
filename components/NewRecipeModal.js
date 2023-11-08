@@ -6,10 +6,10 @@ import IngredientSelector from './IngredientSelector';
 
 import {saveKey, getKey, removeKey, RECIPE_KEY} from '../data/Storage';
 
-function NewRecipeModal({closeModal}) {
+function NewRecipeModal({closeModal, setRecipeRefresh}) {
     const [recipeName, onRecipeNameChange] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
-    const [availableIngredients, setAvailableIngredients] = useState([]);
+    const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
 
     return (
@@ -29,7 +29,7 @@ function NewRecipeModal({closeModal}) {
                 <View style={Styles.divider} />
                 <TagSelector selectedTags={selectedTags} setSelectedTags={setSelectedTags}/>
                 <View style={Styles.divider} />
-                <IngredientSelector availableIngredients={availableIngredients} setAvailableIngredients={setAvailableIngredients}/>
+                <IngredientSelector selectedIngredients={selectedIngredients} setSelectedIngredients={setSelectedIngredients}/>
                 <View style={Styles.divider} />
                 {!!errorMessage &&
                     <Text style={Styles.errorText}>{errorMessage}</Text>
@@ -53,10 +53,12 @@ function NewRecipeModal({closeModal}) {
     );
 
     function addRecipe() {        
-        const theTags = selectedTags.map((item) => {return item.name});
-        const theIngredients = availableIngredients.filter((item) => {
-            return item.quantity > 0;
-        });
+        // const theTags = selectedTags.map((item) => {return item.name});
+        const theTags = selectedTags;
+        // const theIngredients = availableIngredients.filter((item) => {
+        //     return item.quantity > 0;
+        // });
+        const theIngredients = selectedIngredients;
 
         const newRecipe = {
             'name': recipeName,
@@ -85,6 +87,7 @@ function NewRecipeModal({closeModal}) {
 
             // Save the recipe list
             saveKey(RECIPE_KEY, data);
+            setRecipeRefresh(true);
             closeModal();
         })
     }
