@@ -29,231 +29,231 @@ const storage = new Storage({
             return [
                 {
                     'name': 'Canned Corn',
-                    'size': '15.25 oz',
+                    'size': '15 oz',
                     'type': 'Canned',
-                    'price': '',
+                    'price': '0.64',
                 },
                 {
                     'name': 'Diced Tomatoes',
                     'size': '14.5 oz',
                     'type': 'Canned',
-                    'price': '',
+                    'price': '1.06',
                 },
                 {
                     'name': 'Black Beans',
                     'size': '15 oz',
                     'type': 'Canned',
-                    'price': '',
+                    'price': '0.88',
                 },
                 {
                     'name': 'Shredded Mozzarella',
                     'size': '8 oz',
                     'type': 'Dairy',
-                    'price': '',
+                    'price': '2.22',
                 },
                 {
                     'name': 'Marinara Sauce',
                     'size': '26 oz',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '1.70'
                 },
                 {
                     'name': 'Pepperoni',
                     'size': '4 oz',
                     'type': 'Refridgerated',
-                    'price': ''
+                    'price': '2.14'
                 },
                 {
                     'name': 'Bell Pepper',
                     'size': '1',
                     'type': 'Produce',
-                    'price': ''
+                    'price': '0.72'
                 },
                 {
                     'name': 'Red Onion',
                     'size': '1',
                     'type': 'Produce',
-                    'price': ''
+                    'price': '0.86'
                 },
                 {
                     'name': 'Italian Seasoning',
-                    'size': '',
+                    'size': '0.95 oz',
                     'type': 'Spices',
-                    'price': ''
+                    'price': '1.18'
                 },
                 {
                     'name': 'Dry Macaroni',
-                    'size': '',
+                    'size': '16 oz',
                     'type': 'Dried',
-                    'price': ''
+                    'price': '1.12'
                 },
                 {
                     'name': 'Frozen Corn',
-                    'size': '',
+                    'size': '12 oz',
                     'type': 'Frozen',
-                    'price': ''
+                    'price': '1.18'
                 },
                 {
                     'name': 'Minced Garlic',
-                    'size': '',
+                    'size': '8 oz',
                     'type': 'Refridgerated',
-                    'price': ''
+                    'price': '2.27'
                 },
                 {
                     'name': 'Cumin',
-                    'size': '',
+                    'size': '2.5 oz',
                     'type': 'Spices',
-                    'price': ''
+                    'price': '1.28'
                 },
                 {
                     'name': 'Salsa',
-                    'size': '',
+                    'size': '24 oz',
                     'type': 'Refridgerated',
-                    'price': ''
+                    'price': '2.36'
                 },
                 {
                     'name': 'Boneless Skinless Chicken Breasts',
-                    'size': '',
+                    'size': '1 lb',
                     'type': 'Meat',
-                    'price': ''
+                    'price': '3.25'
                 },
                 {
                     'name': 'Cream Cheese',
                     'size': '8 oz',
                     'type': 'Dairy',
-                    'price': ''
+                    'price': '1.54'
                 },
                 {
                     'name': 'Shredded Cheddar Cheese',
-                    'size': '',
+                    'size': '8 oz',
                     'type': 'Dairy',
-                    'price': ''
+                    'price': '2.22'
                 },
                 {
                     'name': 'Mushroom Gravy',
-                    'size': '',
+                    'size': '18 oz',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '3.32'
                 },
                 {
                     'name': 'Milk',
-                    'size': '',
+                    'size': '1 Gallon',
                     'type': 'Refridgerated',
-                    'price': ''
+                    'price': '3.36'
                 },
                 {
-                    'name': 'Chopped Green Chilies',
-                    'size': '',
+                    'name': 'Chopped Green Chiles',
+                    'size': '0.92',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '0.92'
                 },
                 {
                     'name': 'Dry Italian Salad Dressing',
                     'size': '1',
                     'type': 'Spices',
-                    'price': ''
+                    'price': '1.87'
                 },
                 {
                     'name': 'Egg Noodles',
-                    'size': '1 pkg',
+                    'size': '16 oz',
                     'type': 'Noodles',
-                    'price': ''
+                    'price': '1.54'
                 },
                 {
                     'name': 'Ground Beef',
                     'size': '1 lb',
                     'type': 'Meat',
-                    'price': ''
+                    'price': '3.97'
                 },
                 {
                     'name': 'Kidney Beans',
-                    'size': '',
+                    'size': '15.5 oz',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '0.88'
                 },
                 {
                     'name': 'Garbanzo Beans',
-                    'size': '',
+                    'size': '15.5',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '0.88'
                 },
                 {
                     'name': 'Green Beans',
-                    'size': '',
+                    'size': '14.5',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '0.64'
                 },
                 {
                     'name': 'Italian Stewed Tomatoes',
-                    'size': '',
+                    'size': '14.5',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '1.06'
                 },
                 {
                     'name': 'Tomato Sauce',
                     'size': '15 oz',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '1.06'
                 },
                 {
                     'name': 'Shell Noodles',
-                    'size': '1 pkg',
-                    'type': '',
-                    'price': ''
+                    'size': '16 oz',
+                    'type': 'Noodles',
+                    'price': '1.18'
                 },
                 {
                     'name': 'Spaghetti Seasoning',
                     'size': '1 pkg',
                     'type': 'Spices',
-                    'price': ''
+                    'price': '1.58'
                 },
                 {
                     'name': 'Frozen Broccoli',
-                    'size': '',
+                    'size': '12 oz',
                     'type': 'Frozen',
-                    'price': ''
+                    'price': '1.16'
                 },
                 {
                     'name': 'Potatoes',
-                    'size': '',
+                    'size': '1 lb',
                     'type': 'Produces',
-                    'price': ''
+                    'price': '3.87'
                 },
                 {
                     'name': 'Yellow Onion',
                     'size': '1',
                     'type': 'Produce',
-                    'price': ''
+                    'price': '0.86'
                 },
                 {
                     'name': 'Cayenne Pepper',
-                    'size': '',
+                    'size': '2.25 oz',
                     'type': 'Spices',
-                    'price': ''
+                    'price': '3.96'
                 },
                 {
                     'name': 'Chicken Broth',
-                    'size': '',
+                    'size': '32 oz',
                     'type': 'Canned',
-                    'price': ''
+                    'price': '1.00'
                 },
                 {
                     'name': 'Velveeta',
-                    'size': '',
+                    'size': '12 oz',
                     'type': 'Dairy',
-                    'price': ''
+                    'price': '3.28'
                 },
                 {
                     'name': 'Shredded Sharp Cheddar Cheese',
-                    'size': '',
+                    'size': '8 oz',
                     'type': 'Dairy',
-                    'price': ''
+                    'price': '2.22'
                 },
                 {
                     'name': 'Half and Half',
-                    'size': '',
+                    'size': '32 oz',
                     'type': 'Refridgerated',
-                    'price': ''
+                    'price': '2.60'
                 },
             ]
         },
