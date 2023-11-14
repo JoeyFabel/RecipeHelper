@@ -6,22 +6,10 @@ import { Styles } from '../styles/Styles';
 import NewRecipeModal from './NewRecipeModal';
 import Recipe from './Recipe';
 
-import {getKey, removeKey, RECIPE_KEY} from '../data/Storage';
 
-function RecipeDisplay() {
+function RecipeDisplay({availableRecipes, setAvailableRecipes, recipeQuantities, setRecipeQuantities}) {
     const [modalVisible, setModalVisible] = useState(false);
-    const [availableRecipes, setAvailableRecipes] = useState([]);
     const [refresh, setRefresh] = useState(false);
-
-    useEffect(() => {
-        // removeKey(RECIPE_KEY);
-
-        getKey(RECIPE_KEY).then((data) => {
-            console.log(data);
-
-            setAvailableRecipes(data);
-        });
-    }, []);
 
     return (
         <View style={{flex: 1, borderLeftWidth: 1, alignItems: 'center'}}>
@@ -32,9 +20,8 @@ function RecipeDisplay() {
                 data={availableRecipes}                
                 // keyExtractor={recipe => recipe.name}
                 renderItem={({item, index}) => {
-                    console.log(item);
                     return (
-                        <Recipe data={item} /> 
+                        <Recipe data={item} quantity={recipeQuantities[index]} increaseQuantity={() => increaseRecipeQuantity(index)} decreaseQuantity={() => decreaseRecipeQuantity(index)}/> 
                     )
                 }}
             />
@@ -58,6 +45,27 @@ function RecipeDisplay() {
             </Modal>
         </View>
     );
+
+    function increaseRecipeQuantity(index) {        
+        // increase the quantity by 1 and refresh
+        let quantities = recipeQuantities;
+        quantities[index]++;
+
+        setRecipeQuantities(quantities);
+        setRefresh(!refresh);
+    }
+
+    function decreaseRecipeQuantity(index) {
+        // dont decrease if the quantity is already 0
+        if (recipeQuantities[index] == 0) return;
+
+        // decrease the quantity by 1 and refresh
+        let quantities = recipeQuantities;
+        quantities[index]--;
+
+        setRecipeQuantities(quantities);
+        setRefresh(!refresh);
+    }
 
     // Called when the add recipe button is clicked
     function AddRecipe() {
